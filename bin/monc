@@ -1,0 +1,10 @@
+#!/bin/bash
+
+bln=$1
+if [ "$bln" = "on" ]; then
+xset dpms force on
+elif [ "$bln" = "off" ]; then
+xset dpms force off
+else
+echo "Parameter Expected: (on|off)"
+fi

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+x="$1"
+if [ "$x" == "status" ]; then
+	echo $BRIGHTNESS
+	exit 0 
+fi
+mon=`xrandr --listactivemonitors|awk -e '{print $4}'|sed /^$/d`
+if [ "$x" == "set" ]; then
+	BRIGHTNESS=$2
+elif [ "$x" == "inc" -o "$x" == "increase" ]; then
+	BRIGHTNESS=`echo "$BRIGHTNESS+$2"|bc`
+elif [ "$x" == "dec" -o "$x" == "decrease" ]; then
+	BRIGHTNESS=`echo "$BRIGHTNESS-$2"|bc`
+else
+	echo "Unknown command: $x"
+	return 1
+fi
+for m in $mon
+do
+	xrandr --output $m --brightness $BRIGHTNESS
+done
