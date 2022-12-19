@@ -1,0 +1,3 @@
+#!/bin/bash
+
+math.time add now 0

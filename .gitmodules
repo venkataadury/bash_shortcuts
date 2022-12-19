@@ -1,0 +1,3 @@
+[submodule "bin/libraries_cpp"]
+	path = bin/libraries_cpp
+	url = git@github.com:venkataadury/libraries_cpp.git

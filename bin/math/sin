@@ -1,0 +1,11 @@
+#!/bin/bash
+
+x=$1
+y=$2
+cd /bin/math/.jav
+if test -z "$y"
+then
+java CallTrig sin "$x"
+else
+echo `java CallTrig sin "$x"`
+fi

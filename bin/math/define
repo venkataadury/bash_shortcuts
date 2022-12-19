@@ -1,0 +1,21 @@
+#!/bin/bash
+
+x=$1
+
+echo $x:
+def=`grep $x /bin/math/definitions|cut -d":" -f2-`
+if test -z "$def"
+then
+	echo "Definition for '$x' was not found in database"
+	exit 1
+fi
+fields=`echo $def|grep -o ';'|wc -l`
+fields=`expr $fields "+" 1`
+echo $fields
+i=1
+while test $i -le $fields
+do
+	sec=`echo $def|cut -d";" -f$i`
+	eval echo `echo $sec|sed s/"\*\*"/"\`setterm -bold off\`"/g`
+	i=`expr $i "+" 1`
+done

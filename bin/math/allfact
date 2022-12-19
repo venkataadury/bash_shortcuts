@@ -1,0 +1,24 @@
+#!/bin/bash
+
+x=$1
+y=$2
+i=0
+y=`trim "$y"`
+z=`echo $y|wc -w`
+n=1
+while test $n -le $z
+do
+pc=`echo $y|cut -d" " -f$n`
+a=`expr $pc "%" $x`
+if test $a -ne 0
+then
+i=1
+fi
+n=`incr $n`
+done
+if test $i -eq 0
+then
+exit 0
+else
+exit 1
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+a=$1
+b=$2
+c=$3
+d=$4
+e=$5
+
+cd /bin/math/.jav
+java PoL "$a" "$b" "$c" "$d" "$e"

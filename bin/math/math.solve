@@ -1,0 +1,11 @@
+#!/bin/bash
+
+x=$1
+cd /bin/math/.jav
+if test -z "$2"
+then
+java SolveSingleVarEqn "$x"
+else
+java SolveSimultaneousInEquations "$x" "$y"
+fi
+

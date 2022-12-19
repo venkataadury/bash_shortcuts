@@ -1,0 +1,9 @@
+#!/bin/bash
+
+x=$1
+if ! isint $x
+then
+echo "Err: Only integers please."
+exit 1
+fi
+convbase $x 10 2

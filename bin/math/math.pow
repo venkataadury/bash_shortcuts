@@ -1,0 +1,12 @@
+#!/bin/bash
+
+x=$1
+y=$2
+ans=`python /bin/math/.py/pow.py $x $y`
+dec=`echo $ans|cut -d"." -f2`
+if test $dec -eq 0
+then
+echo `pcof "$ans" 1 "."`
+exit 0
+fi
+echo $ans

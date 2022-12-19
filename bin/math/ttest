@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+
+import sys
+from math import sqrt
+from scipy import stats
+try:
+    m1=float(sys.argv[1])
+    s1=float(sys.argv[2])
+    n1=int(sys.argv[3])
+    m2=float(sys.argv[4])
+    s2=float(sys.argv[5])
+    n2=int(sys.argv[6])
+except:
+    print("Usage: ttest\tmean_of_sample_1 stdev_of_sample_1 n_of_sample_1 mean_of_sample_2 stdev_of_sample_2 n_of_sample_2")
+    print("6 numeric inputs required. Any more will be omitted. Less will give this error.")
+    exit(1)
+print("Means:",m1,"vs",m2)
+print("Std. Devs. :",s1,"vs",s2)
+print("Number of Points:",n1,"and",n2)
+
+R=s1/s2
+if R>2 or R<0.5: print("WARN: Variances differ significantly. Consider Welch's Test also")
+
+sp=sqrt(((n1-1)*(s1*s1)+(n2-1)*s2*s2)/(n1+n2-2))
+mult=sqrt(1/n1+1/n2)
+t = (m1-m2)/(sp*mult)
+print("T-value:",t)
+df=n1+n2-2
+print("Degrees of freedom (df):",df)
+p=stats.t.sf(abs(t), df)*2
+print("\nTwo-tailed p-value:",p,"\n")

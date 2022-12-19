@@ -1,0 +1,206 @@
+#!/bin/bash
+
+dn="False"
+a=$1
+x=$2
+y=$3
+unit="h"
+if [ "$x" == "now" -o "$x" == "Now" ]; then
+x=`date +%r|cut -d" " -f1`
+fi
+if [ "$y" == "now" -o "$y" == "Now" ]; then
+y=`date +%r|cut -d" " -f1`
+fi
+d=0
+h1=`echo $x|cut -d":" -f1 -s`
+m1=`echo $x|cut -d":" -f2 -s`
+s1=`echo $x|cut -d":" -f3 -s`
+if ! istime $x
+then
+cl=`echo $x|wc -c`
+cl=`decr $cl`
+unit=`echo $x|cut -c$cl`
+fi
+if test -z "$h1"
+then
+if [ "$unit" == "h" ]; then
+h1=`echo $x|cut -d"$unit" -f1`
+else
+h1=0
+fi
+fi
+if test -z "$m1"
+then
+if [ "$unit" == "m" ]; then
+m1=`echo $x|cut -d"$unit" -f1`
+else
+m1=0
+fi
+fi
+if test -z "$s1"
+then
+if [ "$unit" == "s" ]; then
+s1=`echo $x|cut -d"$unit" -f1`
+else
+s1=0
+fi
+fi
+
+if [ "$a" == "add" ]; then
+unit="h"
+if ! istime $y
+then
+cl=`echo $y|wc -c`
+cl=`decr $cl`
+unit=`echo $y|cut -c$cl`
+fi
+h2=`echo $y|cut -d":" -f1 -s`
+m2=`echo $y|cut -d":" -f2 -s`
+s2=`echo $y|cut -d":" -f3 -s`
+if test -z "$h2"
+then
+if [ "$unit" == "h" ]; then
+h2=`echo $y|cut -d"$unit" -f1`
+else
+h2=0
+fi
+fi
+if test -z "$m2"
+then
+if [ "$unit" == "m" ]; then
+m2=`echo $y|cut -d"$unit" -f1`
+else
+m2=0
+fi
+fi
+if test -z "$s2"
+then
+if [ "$unit" == "s" ]; then
+s2=`echo $y|cut -d"$unit" -f1`
+else
+s2=0
+fi
+fi
+hf=`add $h1 $h2`
+mf=`add $m1 $m2`
+sf=`add $s1 $s2`
+dn="True"
+fi
+if  [ "$a" == "sub" ]; then
+unit="h"
+if ! istime $y
+then
+cl=`echo $y|wc -c`
+cl=`decr $cl`
+unit=`echo $y|cut -c$cl`
+fi
+h2=`echo $y|cut -d":" -f1 -s`
+m2=`echo $y|cut -d":" -f2 -s`
+s2=`echo $y|cut -d":" -f3 -s`
+if test -z "$h2"
+then
+if [ "$unit" == "h" ]; then
+h2=`echo $y|cut -d"$unit" -f1`
+else
+h2=0
+fi
+fi
+if test -z "$m2"
+then
+if [ "$unit" == "m" ]; then
+m2=`echo $y|cut -d"$unit" -f1`
+else
+m2=0
+fi
+fi
+if test -z "$s2"
+then
+if [ "$unit" == "s" ]; then
+s2=`echo $y|cut -d"$unit" -f1`
+else
+s2=0
+fi
+fi
+hf=`sub $h1 $h2`
+mf=`sub $m1 $m2`
+sf=`sub $s1 $s2`
+dn="True"
+fi
+
+if [ "$a" == "mul" ]; then
+mult=$y
+hf=`mul $h1 $y`
+mf=`mul $m1 $y`
+sf=`mul $s1 $y`
+dn="True"
+fi
+if [ "$a" == "div" -o "$a" == "divi" ]; then
+divz=$y
+hf=`divi $h1 $y`
+mf=`divi $m1 $y`
+sf=`divi $s1 $y`
+dn="True"
+fi
+if [ "$a" == "sec" -o "$a" == "makesec" -o "$a" == "second" ]; then
+while float $h1 -gt 0
+do
+m1=`add $m1 60`
+h1=`decr $h1`
+done
+while float $m1 -gt 0
+do
+s1=`add $s1 60`
+m1=`decr $m1`
+done
+echo $s1
+exit 0
+fi
+
+if [ "$a" == "min" -o "$a" == "makemin" -o "$a" == "minute" ]; then
+while float $h1 -gt 0
+do
+m1=`add $m1 60`
+h1=`decr $h1`
+done
+dec=`divi $s1 60`
+m1=`add $m1 $dec`
+echo $m1
+exit 0
+fi
+
+while float $hf -ge 24
+do
+hf=`sub $hf 24`
+d=`incr $d`
+done
+while float $mf -ge 60
+do
+mf=`sub $mf 60`
+hf=`incr $hf`
+done
+while float $sf -ge 60
+do
+sf=`sub $sf 60`
+mf=`incr $mf`
+done
+
+
+while float $sf -lt 0
+do
+sf=`add $sf 60`
+mf=`decr $mf`
+done
+while float $mf -lt 0
+do
+mf=`add $mf 60`
+hf=`decr $hf`
+done
+
+if test $d -gt 0
+then
+echo "$d Day(s), $hf:$mf:$sf"
+exit 0
+fi
+if [ "$dn" == "True" ]; then
+echo "$hf:$mf:$sf"
+fi

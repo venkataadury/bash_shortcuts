@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import sys
+import numpy as np
+if len(sys.argv)<2:
+    print("Give source file please") 
+    exit(1)
+if len(sys.argv)>=4:
+    cs1,cs2=int(sys.argv[2])-1,int(sys.argv[3])-1
+else:
+    cs1,cs2=0,1
+cols=(cs1,cs2)
+fl=open(sys.argv[1],"r")
+data=np.loadtxt(sys.argv[1],usecols=cols)
+ys=data[:,1]
+avg=sum(ys)/len(ys)
+TSS=sum([(e-avg)**2 for e in ys])
+print("TSS:",TSS)
+RSS=0
+for v in data:
+    RSS+=(v[1]-v[0])**2
+print("RSS:",RSS)
+print("R^2:",1-RSS/TSS)

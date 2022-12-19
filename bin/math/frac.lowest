@@ -1,0 +1,20 @@
+#!/bin/bash
+
+x=$1
+if ! isfrac $x
+then
+echo "Only fractions, please."
+exit 1
+fi
+
+if isfloat $x
+then
+echo "$x/1"
+exit 0
+fi
+N=`pcof "$x" 1 "/"`
+D=`pcof "$x" 2 "/"`
+G=`gcdf $N $D`
+N=`divi $N $G`
+D=`divi $D $G`
+echo "$N/$D"

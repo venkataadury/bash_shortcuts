@@ -1,0 +1,23 @@
+#!/bin/bash
+
+x=$1
+ln=`echo $x|wc -w`
+
+lim=`min "$x"`
+if `allfact $lim "$x"`
+then
+echo $lim
+exit 0
+fi
+lim=`expr $lim "/" 2`
+while test $lim -ge 1
+do
+if `allfact $lim "$x"`
+then
+echo $lim
+exit 0
+fi
+lim=`expr $lim "-" 1`
+done
+echo 1
+exit 0

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+x=$1
+o1=$2
+o2=$3
+t=$4
+opt=$5
+if ! isint $t
+then
+echo "Term number must be integer only"
+exit 1
+fi
+if test -z "$opt"
+then
+opt=="-s"
+fi
+if [ "$x" == "-a" ]; then
+diff=`echo "$o2 - $o1"|bc`
+n=1
+while test $n -le $t
+do
+n=`expr $n "+" 1`
+if [ "$opt" == "-a" ]; then
+echo "$o1 + ($n * $diff)"|bc
+else
+pass
+fi
+done
+if [ "$opt" != "-a" ]; then
+echo "$o1 + ($t * $diff)"|bc
+fi
+elif [ "$x" == "-g" ]; then
+if test $o1 -eq 0
+then
+echo "Err: Division by Zero"
+exit 1
+fi
+diff=`echo "$o2 / $o1"|bc`
+n=1
+while test $n -le $t
+do
+n=`expr $n "+" 1`
+echo "$o1 * ($diff ^ $n)"|bc
+done
+else 
+echo "The options are '-a' and '-g' only"
+fi

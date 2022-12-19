@@ -1,0 +1,20 @@
+#!/bin/bash
+
+x=$1
+ln=`echo $x|wc -w`
+
+lim=`min "$x"`
+a=1
+gcd=1
+while test $lim -ge 1
+do
+if `allfact $lim "$x"`
+then
+gcd=$lim
+echo $gcd
+exit 0
+fi
+lim=`expr $lim "-" 1`
+done
+echo 1
+exit 0

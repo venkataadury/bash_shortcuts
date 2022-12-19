@@ -1,0 +1,47 @@
+#!/bin/bash
+
+x=$1
+T=1
+y=`groot $x 2`
+y=`echo $y|cut -d"." -f1`
+y=`incr $y`
+H=$2
+if test $x -eq 2
+then
+exit 0
+fi
+if test $x -eq 3
+then
+exit 0
+fi
+if test $x -eq 4
+then
+exit 1
+fi
+z=2
+while test $z -ne $y
+do
+modul=`mod $x $z -p`
+if test $modul -eq 0
+then
+if [ "$H" == "-l" ]; then
+echo $z
+T=0
+elif [ "$H" == "-p" ]; then
+echo 1
+exit 1
+else
+exit 1
+fi
+fi
+z=`incr $z`
+done
+if [ "$H" == "-p" ]; then
+echo 0
+fi
+if [ "$H" == "-l" ]; then
+if test $T -eq 1
+then
+echo "No Factors"
+fi
+fi

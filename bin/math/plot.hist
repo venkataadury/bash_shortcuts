@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+from os.path import exists
+
+rawdat=sys.argv[1].strip()
+bins=None if len(sys.argv)<=2 else int(sys.argv[2])
+delim=None if len(sys.argv)<=3 else sys.argv[3]
+if exists(rawdat):
+    if delim is not None: rawdat=np.loadtxt(rawdat,delimiter=delim)
+    else: rawdat=np.loadtxt(rawdat)
+else:
+    if delim is not None: rawdat=np.array([float(v) for v in str.split(rawdat,delim)])
+    else: rawdat=np.array([float(v) for v in str.split(rawdat)])
+
+if bins is None:
+    bins=min(len(rawdat)//4,25)
+plt.hist(rawdat,bins=bins)
+plt.show()

@@ -1,0 +1,24 @@
+#!/bin/bash
+x=$1
+num=`echo $x|wc -w`
+cmp=`echo $x|sed s/" 1 "/""/g`
+cmp=`echo $x|sed s/"^1 "/""/g`
+cmp=`trim "$cmp"`
+echo $cmp
+nm1=1
+max=`mul "$cmp"`
+max=`divi $max 2`
+max=`incr $max`
+while test $nm1 -le $max
+do
+pc=$nm1
+###PROG###
+if `allfacti "$cmp" $pc -i`
+then
+echo $pc
+exit 0
+fi
+nm1=`incr $nm1`
+done
+echo `mul "$cmp"`
+exit 0

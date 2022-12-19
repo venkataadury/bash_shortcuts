@@ -1,0 +1,32 @@
+#!/bin/bash
+
+x=$1
+echo $x|grep "\/" 1> /dev/null 2> /dev/null
+if test $? -eq 0
+then
+N=`pcof $x 1 "/"`
+D=`pcof $x 2 "/"`
+E=`pcof $x 3 "/"`
+if test -n "$E"
+then
+exit 1
+fi
+if isfloat $N -a isfloat $D
+then
+if test $D -ne 0
+then
+exit 0
+else 
+exit 1
+fi
+else
+exit 1
+fi
+else
+if isfloat $x
+then
+exit 0
+else
+exit 1 
+fi
+fi

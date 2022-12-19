@@ -1,0 +1,21 @@
+#!/bin/bash
+
+x=$1
+if ! isfloat $x
+then
+echo "Sorry: Enter only decimals"
+exit 1
+fi
+fct=`indexof "." "$x"`
+if test $fct -eq -1
+then
+echo "$x/1"
+exit 0
+fi
+dec=`pcof "$x" 2 "."`
+decl=`len $dec`
+N=`pcof "$x" 1 "."`
+D=`pcof "$x" 2 "."`
+Nf=`mul "$N$D" 1`
+H="$Nf/`powr 10 $decl`"
+echo "`frac.lowest $H`"

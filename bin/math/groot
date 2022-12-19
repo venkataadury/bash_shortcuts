@@ -1,0 +1,7 @@
+#!/bin/bash
+
+x=$1
+y=$2
+
+ans=`python /bin/math/.py/rtpow.py $x $y`
+echo $ans

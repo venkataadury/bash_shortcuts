@@ -1,0 +1,19 @@
+#!/bin/bash
+
+x=$1
+
+num=`echo $x|wc -w`
+min=`echo $x|cut -d" " -f1`
+a=1
+b=2
+while test $a -le $num
+do
+p1=`echo $x|cut -d" " -f$a`
+tf=`echo "$p1>$min"|bc`
+if test $tf -eq 0
+then
+min=$p1
+fi
+a=`expr $a "+" 1`
+done
+echo $min

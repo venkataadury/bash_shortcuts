@@ -1,0 +1,11 @@
+#!/bin/bash
+
+x=$1
+y=`grep -wi "$x" /bin/math/.dat/hex|cut -d"-" -f2`
+if test $? -eq 0
+then
+echo $y
+else
+echo "Err"
+exit 1
+fi

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+x=$1
+y=$2
+i=0
+z=`echo $x|wc -w`
+n=1
+while test $n -le $z
+do
+pc=`echo $x|cut -d" " -f$n`
+X=`expr $y "%" $pc`
+if test $X -ne 0
+then
+i=1
+fi
+n=`incr $n`
+done
+if test $i -eq 0
+then
+exit 0
+else
+exit 1
+fi

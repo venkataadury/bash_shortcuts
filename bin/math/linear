@@ -1,0 +1,9 @@
+#!/bin/bash
+
+x=$1
+y=$2
+
+l1=`echo $x|wc -w`
+l2=`echo $y|wc -w`
+
+

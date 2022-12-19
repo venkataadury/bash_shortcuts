@@ -1,0 +1,7 @@
+#!/bin/bash
+
+para=$@
+
+para=`echo "$para"|sed s/"-ge"/">="/g|sed s/"-gt"/">"/g|sed s/"-le"/"<="/g|sed s/"-lt"/"<"/g`
+para=`echo "$para"|sed s/"-eq"/"=="/g|sed s/"-ne"/"!="/g`
+exit `echo "$para"|bc`

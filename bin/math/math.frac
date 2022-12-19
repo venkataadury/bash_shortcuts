@@ -1,0 +1,125 @@
+#!/bin/bash
+
+x=$1
+y=$2
+z=$3
+
+if [ "$y" == "add" -o "$y" == "+" ]; then
+if isint $x
+then
+if isint $z
+then
+echo "`add $x $z`/1"
+exit 0
+fi
+fi
+if isfloat $x
+then
+x=`makefrac "$x"`
+fi
+if isfloat $z
+then
+z=`makefrac "$z"`
+fi
+#Made both frac
+N1=`echo $x|cut -d"/" -f1`
+N2=`echo $z|cut -d"/" -f1`
+D1=`echo $x|cut -d"/" -f2`
+D2=`echo $z|cut -d"/" -f2`
+an1=`mul $N1 $D2`
+an2=`mul $N2 $D1`
+ans=`add $an1 $an2`
+den=`mul $D1 $D2`
+ansf=`frac.lowest "$ans/$den"`
+echo $ansf
+exit 0
+fi
+
+if [ "$y" == "sub" -o "$y" == "-" ]; then
+if isint $x
+then
+if isint $z
+then
+echo "`sub $x $z`/1"
+exit 0
+fi
+fi
+if isfloat $x
+then
+x=`makefrac "$x"`
+fi
+if isfloat $z
+then
+z=`makefrac "$z"`
+fi
+#Made both frac
+N1=`echo $x|cut -d"/" -f1`
+N2=`echo $z|cut -d"/" -f1`
+D1=`echo $x|cut -d"/" -f2`
+D2=`echo $z|cut -d"/" -f2`
+an1=`mul $N1 $D2`
+an2=`mul $N2 $D1`
+ans=`sub $an1 $an2`
+den=`mul $D1 $D2`
+ansf=`frac.lowest "$ans/$den"`
+echo $ansf
+exit 0
+fi
+
+if [ "$y" == "mul" -o "$y" == "*" -o "$y" == "x" -o "$y" == "X" ]; then
+if isint $x
+then
+if isint $z
+then
+echo "`mul $x $z`/1"
+exit 0
+fi
+fi
+if isfloat $x
+then
+x=`makefrac "$x"`
+fi
+if isfloat $z
+then
+z=`makefrac "$z"`
+fi
+#Made both frac
+N1=`echo $x|cut -d"/" -f1`
+N2=`echo $z|cut -d"/" -f1`
+D1=`echo $x|cut -d"/" -f2`
+D2=`echo $z|cut -d"/" -f2`
+ans=`mul $N1 $N2`
+den=`mul $D1 $D2`
+echo "`frac.lowest $ans/$den`"
+exit 0
+fi
+
+if [ "$y" == "div" -o "$y" == "/" -o "$y" == "divi" ]; then
+if isint $x
+then
+if isint $z
+then
+echo "`divi $x $z`/1"
+exit 0
+fi
+fi
+if isfloat $x
+then
+x=`makefrac "$x"`
+fi
+if isfloat $z
+then
+z=`makefrac "$z"`
+fi
+#Made both frac
+N1=`echo $x|cut -d"/" -f1`
+N2=`echo $z|cut -d"/" -f1`
+D1=`echo $x|cut -d"/" -f2`
+D2=`echo $z|cut -d"/" -f2`
+ans=`divi $N1 $N2`
+den=`divi $D1 $D2`
+echo "`frac.lowest $ans/$den`"
+exit 0
+fi
+echo "Unknown operator: $y"
+exit 1

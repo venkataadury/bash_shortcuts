@@ -1,0 +1,22 @@
+#!/bin/bash
+
+x=$1
+if ! isfrac $x
+then
+echo "Sorry: Enter only fractions"
+fi
+fct=`indexof "/" "$x"`
+if test $fct -eq -1
+then
+if isint $x
+then
+echo "`mul $x 1`"".00"
+exit 0
+else
+echo "$x""0"
+exit 0
+fi
+fi
+N=`echo $x|cut -d"/" -f1`
+D=`echo $x|cut -d"/" -f2`
+divi $N $D

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+x=$1
+y=$2
+z=$3
+if test -z "$z" 
+then
+z="???"
+fi
+python /bin/math/.py/base.py $x $y $z

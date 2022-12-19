@@ -1,0 +1,51 @@
+#!/bin/bash
+
+x=$1
+if test -z "$x"
+then
+echo "No parameters given."
+exit 1
+fi
+gcd=1
+l=`echo $x|wc -w`
+if test $l -eq 1
+then
+echo $x
+exit 0
+fi
+num=`min "$x"`
+a=0
+while test $a -le $num
+do
+b=0
+a=`incr $a`
+while test $b -lt $l
+do
+b=`incr $b`
+pc=`echo $x|cut -d" " -f$b`
+md=`mod $pc $a -p`
+if test $md -eq 0
+then
+eval c$b=0
+else
+eval c$b=1
+fi
+done
+B=0
+C=0
+while test $B -lt $l
+do
+B=`incr $B`
+if [ "`eval echo "\$c$B"`" == "1" ]; then
+C=1
+else
+C=0
+fi
+done
+if test $C -eq 0
+then
+gcd=`decr $a`
+fi
+C=0
+done
+echo $gcd

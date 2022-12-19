@@ -1,0 +1,12 @@
+#!/bin/bash
+
+x=$1
+if isfrac $x
+then
+N=`echo $x|cut -d"/" -f1`
+D=`echo $x|cut -d"/" -f2`
+echo "$D/$N"
+else
+echo "Enter only fraction"
+exit 1
+fi

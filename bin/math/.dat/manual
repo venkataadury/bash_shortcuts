@@ -1,0 +1,115 @@
+allfact~Checks if the number is factor of all numbers in the list. 
+<allfact [num] [list]> >> exits 0-True 1-False
+<nothing>
+allfacti~Checks if all the numbers of a list are factors of a number. 
+<allfacti [list] [num]> >> exits 0-True 1-False
+<nothing>
+avg~Gives the average of the numbers given in the list. Accepts floats.
+<avg [list]> >> average number
+math.avg
+binr~Gives the binary value of a decimal number. Does not take fractions or floats.
+<binr [dec. num]> >> binary value
+math.binr
+convbase~Converts the given number from one base to another. Does not take fractions or floats.
+<convbase [num] [from base] [to base]> >> converted value. (Max base upto 36)
+math.base, math.convbase
+decr~Decrements the number. (Subtracts 1 from it)
+<decr [num] > >> num - 1
+math.decr, (sub num 1)
+define~Gives the mathematical definiton of the given word (if in file).
+define [word]
+math.def
+frac.calc~Does Calculations taking fractions as input. (operators are +, -, *, /)
+<frac.calc [frac1] [operation] [frac2]> >> answer after operation
+math.frac
+frac.lowest~Reduces the fraction to its lowest terms.
+<frac.lowest [frac]> >> lowest form of fraction
+<nothing>
+frac.rec~Gives the reciprocal of a fraction
+<frac.rec [frac]> >> Reciprocal
+rec
+gcd~Gives the greatest common divisor(factor) of the number in list
+<gcd [list]> >> G.C.D
+gcdn, hcf
+gcdf~Quick gcd function to find G.C.D of two numbers. Useful for fractions.
+<gcdf [num1] [num2]> >> G.C.D
+gcd(slower)
+graph.dist~Distance of two points on a graph
+<graph.dist (x1,y1) (x2,y2) [unit]> >> Distance in units
+gdist
+graph.leqn~Gives the equation of a line based on the given parameters. The possible parameters are: point (pt), y-intercept (yi), x-intercept (xi), inclination (inc), slope (slp)
+<graph.leqn param-type1 param1 param-type2 param2> >> Equation of the line. Ex: 'graph.leqn pt (3,4) inc 45' >> y = x + 1
+<nothing>
+graph.sect~Using section formula, gives the points which divide the line into equal pieces.
+<graph.sect point1 point2 number-of-sections> >> Point list
+gsect
+groot~Gives the root of the number to the given value.
+<groot [num] [powr]> >> powr'th root of num
+root, math.root
+hcf~See gcd
+<hcf [list]> >> G.C.D
+gcdn, gcd
+incr~Increments the given number. (Adds 1 to it)
+<incr [num]> >> num + 1
+math.incr, (add num 1)
+isfact~Checks if a number is divisible by the other or not.
+<isfact [num to div] [num as factor]> >> exits 0-True 1-False
+<nothing>
+isfloat~Checks if a number is a valid floating number or not.
+<isfloat [num]> >> exit 0-True 1-False
+<nothing>
+isfrac~Checks if a number is a valid fraction of not.
+<isfrac [frac]> >> exit 0-True 1-False
+<nothing>
+isint~Checks if the number is a valid integer or not.
+<isint [num]> >> exit 0-True 1-False
+<nothing>
+isprime~Checks if a number is prime or not.
+<isprime [num]> >> exits 0-(Prime) 1-(Not Prime)
+<nothing>
+lcm~Gives the Least Common Multiple of the list.
+<lcm [list]> >> L. C. M.
+math.lcm
+makedec~Converts a fraction into a decimal.
+<makedec [frac]> >> decimal value.
+<nothing>
+makefrac~Converts the decimal to a fraction.
+<makefrac [dec] > >> fration form
+<nothing>
+manual~Gives the manual of the required math module.
+<manual [command]> >> About the command (in math module)
+man (only if not in man bash command)
+math.time~Does time calculations based on operation (operations are add, sub, mul, div)
+<math.time [oper] [time1] [time2]> >> Resultant time
+time.add, time.sub, time.mul, time.div respectively
+max~Gives the maximum value from a list
+<max [list]> >> Maximum value
+math.max
+min~Gives the minimum value from a list
+<min [list]> >> Minimum value
+math.min
+order~Arranges the numbers in a given list in order (options are max, min)
+<order [list] [opt]> >> ordered list
+<nothing>
+pcent~Gives the percentage of an amount.
+<pcen [percentage] [amt]> >> Value
+<nothing>
+powr~Returns the result of the first number to the power of the second
+<powr [base] [exp]> >> Power result
+math.pow
+prog~Follows a (geometric or arithmetic) progression. (type is given as -a or -g) (option -a prints all values in progression)
+<prog [type] [num1] [num2] [number of follow-ups] [opt]> >> Progression with num1 as first val, num2 as second val, and so on.
+math.prog
+quad~Gives the answers for the quadratic equation Ax^2 +Bx +c=0
+<quad [a] [b] [c]> >> Roots of the equation
+math.solvequad
+rec~Gives the reciprocal of a fraction
+<rec [frac]> >> Reciprocal
+frac.rec
+root~Same as groot
+<root [num] [powr]> >> powr'th root of num
+math.root, groot
+sqr~Squares the number given
+<sqr [num]> >> Returns the square of the number
+(math.pow [num] 2), (powr [num] 2)
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+x=$1
+x=`echo $x|sed s/"\."/""/`
+if isint $x
+then
+exit 0
+else
+exit 1
+fi

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+a=$1
+b=$2
+c=$3
+
+B=`mul $b -1`
+D=`sqr $b`
+S=`mul 4 $a $c`
+Hi=`sub $D $S`
+D=`root $Hi 2 2> /dev/null`
+if test $? -ne 0
+then
+echo "Sorry: Unreal roots obtained."
+echo "Square-root $Hi is imaginary."
+exit 1
+fi
+A1=`add $B $D`
+A2=`sub $B $D`
+a2=`mul $a 2`
+echo "`divi $A1 $a2` and `divi $A2 $a2` are the roots."
