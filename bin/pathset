@@ -1,0 +1,12 @@
+#!/bin/bash
+
+x=$1
+y=$2
+if [ "$x" == "add" ]; then
+PATH="$PATH:$y"
+export PATH=$PATH
+fi
+if [ "$x" == "del" ]; then
+PATH=`echo $PATH|sed s/\'$y\'//g`
+export PATH=$PATH
+fi

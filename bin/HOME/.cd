@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cdd $@ 2> /dev/null
+if test $? -ne 0
+then
+	echo "No such folder"
+	if test -f "$1"
+	then
+		echo "File exists"
+		echo "File $1 :"
+		echo
+		head -5 "$1"
+		return 1
+	fi
+	read -p "Create folder ($1)? (y/n): " n
+	if [ "`charat 0 $n`" == "y" ]; then
+		mkdir "$1"
+		cdd $1
+	fi
+fi
