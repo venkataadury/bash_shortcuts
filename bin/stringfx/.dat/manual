@@ -1,0 +1,22 @@
+len~Gives the length of the string
+<len [str]> >>Length in characters(including spaces)
+length~Gives the length of the string
+<length [str]> >>Length in characters(including spaces)
+equalsignorecase~Checks if two strings are the same ignoring the case
+<equalsignorecase [str1] [str2]> >> exits  0-True, 1-False
+pcof~Cuts a string by a given delimiter and gives the substring.
+<pcof [str] [field no] [delim]> >> Substring
+flip~Flips the given string. i.e (hello >> olleh)
+<flip [str]> >> [trs] (flipped)
+trim~Removes blanks spaces before and after a string.
+<trim [str]> >> Trimmed string
+str.trim~Removes blanks spaces before and after a string.
+<trim [str]> >> Trimmed string
+indexof~Gives the index of the character given in a string. (idea from java)
+<indexof [char] [string]> >> index (int)
+charat~Gives the character at the given index in a string. (idea from java)
+<charat [index] [str]> >> character at index
+capall~Capitalizes first letters of all words in a string.
+<capall [str]> >> Str
+haschar~Checks if a string has a certain character in it.
+<haschar [char] [str]> >> exits 0-True 1-False

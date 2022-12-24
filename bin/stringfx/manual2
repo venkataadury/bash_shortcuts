@@ -1,0 +1,20 @@
+#!/bin/bash
+
+x=$1
+grep "^$x~" /bin/string/.dat/manual 1> /dev/null 2> /dev/null
+if test $? -ne 0
+then
+exit 1
+fi
+echo "`tput setaf 1`"
+echo "**********************************************************************************************************************************************************"
+tput setaf 9
+y=`grep "^$x~" /bin/string/.dat/manual|cut -d"~" -f2`
+z=`grep -n "^$x~" /bin/string/.dat/manual|cut -d":" -f1`
+z=`expr $z "+" 1`
+syn=`head -$z /bin/string/.dat/manual|tail -1`
+echo "`setterm -bold on`$x`setterm -bold off`: `tput setaf 6`$y`tput setaf 9`"
+echo "`setterm -bold on`Syntax`setterm -bold off`: `tput setaf 2`$syn`tput setaf 9`"
+tput setaf 1
+echo "**********************************************************************************************************************************************************"
+echo "`tput setaf 9`"

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+x=$1
+y=
+z=`echo $x|wc -c`
+z=`expr $z "-" 1`
+while test $z -ge 1
+do
+a=`echo $x|cut -c$z`
+y=$y$a
+z=`expr $z "-" 1`
+done
+echo $y
+
