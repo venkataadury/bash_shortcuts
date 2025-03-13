@@ -311,4 +311,3 @@ unset __conda_setup
 
 eval `ssh-agent -s`
 ssh-add ~/.ssh/key_ssh
-alias pvz='cd /home/venkata/Downloads/plantsvs.zombies_201909 && wine PlantsVsZombies.exe'
