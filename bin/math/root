@@ -2,4 +2,4 @@
 
 x=$1
 y=$2
-python /bin/math/.py/rtpow.py $x $y
+python3 /bin/math/.py/rtpow.py $x $y

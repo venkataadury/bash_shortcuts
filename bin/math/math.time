@@ -121,9 +121,9 @@ else
 s2=0
 fi
 fi
-hf=`sub $h1 $h2`
-mf=`sub $m1 $m2`
-sf=`sub $s1 $s2`
+hf=`- $h1 $h2`
+mf=`- $m1 $m2`
+sf=`- $s1 $s2`
 dn="True"
 fi
 
@@ -142,58 +142,58 @@ sf=`divi $s1 $y`
 dn="True"
 fi
 if [ "$a" == "sec" -o "$a" == "makesec" -o "$a" == "second" ]; then
-while float $h1 -gt 0
+while test $h1 -gt 0
 do
-m1=`add $m1 60`
-h1=`decr $h1`
+m1=`+ $m1 60`
+h1=`- $h1 1`
 done
-while float $m1 -gt 0
+while test $m1 -gt 0
 do
-s1=`add $s1 60`
-m1=`decr $m1`
+s1=`+ $s1 60`
+m1=`- $m1 1`
 done
 echo $s1
 exit 0
 fi
 
 if [ "$a" == "min" -o "$a" == "makemin" -o "$a" == "minute" ]; then
-while float $h1 -gt 0
+while test $h1 -gt 0
 do
-m1=`add $m1 60`
-h1=`decr $h1`
+m1=`+ $m1 60`
+h1=`- $h1 1`
 done
 dec=`divi $s1 60`
-m1=`add $m1 $dec`
+m1=`+ $m1 $dec`
 echo $m1
 exit 0
 fi
 
-while float $hf -ge 24
+while test $hf -ge 24
 do
-hf=`sub $hf 24`
-d=`incr $d`
+hf=`- $hf 24`
+d=`+ $d 1`
 done
-while float $mf -ge 60
+while test $mf -ge 60
 do
-mf=`sub $mf 60`
-hf=`incr $hf`
+mf=`- $mf 60`
+hf=`+ $hf 1`
 done
-while float $sf -ge 60
+while test $sf -ge 60
 do
-sf=`sub $sf 60`
-mf=`incr $mf`
+sf=`- $sf 60`
+mf=`+ $mf 1`
 done
 
 
-while float $sf -lt 0
+while test $sf -lt 0
 do
-sf=`add $sf 60`
-mf=`decr $mf`
+sf=`+ $sf 60`
+mf=`- $mf 1`
 done
-while float $mf -lt 0
+while test $mf -lt 0
 do
-mf=`add $mf 60`
-hf=`decr $hf`
+mf=`+ $mf 60`
+hf=`- $hf 1`
 done
 
 if test $d -gt 0
