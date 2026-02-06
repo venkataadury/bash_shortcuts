@@ -102,7 +102,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 PATH=$PATH":$HOME:$HOME/Desktop:$HOME/Desktop/mykde/kde:/:$HOME/bin:$HOME/bin:/usr/games:/bin/ml:/bin/math"
-MANPATH="/home/venkata/site/man:/home/venkata/man"
+MANPATH="$HOME/site/man:$HOME/man"
 #aliases
 DUMP="1> /dev/null 2> /dev/null"
 alias ld='ls --color=auto -tr'
@@ -155,7 +155,7 @@ alias fm='nautilus --no-desktop .'
 alias lgo="pkill -u $USER"
 alias बंद='exit'
 alias ोबोल='echo'
-alias unlock='chmod 775 /home/venkata/sh/devel'
+alias unlock="chmod 775 $HOME/sh/devel"
 alias autoremove='sudo apt-get autoremove'
 alias install-f='sudo apt-get install -f'
 alias battle='cd /usr/share/games/wesnoth/1.12'
@@ -175,15 +175,15 @@ path.add /bin/chem
 path.add /bin/string
 path.add /bin/xml
 path.add /opt/ambertools/bin
-export PYTHONPATH="/home/venkata/Desktop/wxPython-src-2.9.4.0/wxPython+:/home/venkata/python/dev"
+export PYTHONPATH="$HOME/Desktop/wxPython-src-2.9.4.0/wxPython+:$HOME/python/dev"
 MODE=""
 read -p "Run in amber mode? (y/n)" yna
 if [ "$yna" = y ]; then
-	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"":/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1:/opt/ambertools/lib:/home/venkata/Desktop/wxPython-src-2.9.4.0/bld/lib"
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"":/usr/lib/gcc/x86_64-pc-linux-gnu/7.4.1:/opt/ambertools/lib:$HOME/Desktop/wxPython-src-2.9.4.0/bld/lib"
 	path.add "$HOME/MD/amber/python"
 	MODE=$MODE+"AMBER "
 else
-	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"":/home/venkata/Desktop/wxPython-src-2.9.4.0/bld/lib"
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"":$HOME/Desktop/wxPython-src-2.9.4.0/bld/lib"
 fi
 #        python2.7 /usr/local/lib/python2.7/dist-packages/*/vidle/idle.py
 export SDL_MOUSE_RELATIVE=0
@@ -197,10 +197,8 @@ alias 'jaav'='java'
 alias 'startsql'="mysql --user=root --password=sairam"
 alias javac='javac -encoding "UTF-8"'
 alias python='python3'
-VEN="/home/venkata"
 PI="22/7"
 alias pkill='.kproc'
-txmsg=$USER"@"`uname -a|cut -d" " -f2`":"`pwd|sed s/"\/home\/venkata"/"~"/`"$ "
 WESPATH="/usr/share/games/wesnoth/1.12/data/core"
 alias commons="cd $HOME/Depjava/UPTODATE/commons"
 alias maths="cd $HOME/Depjava/UPTODATE/maths"
@@ -283,14 +281,14 @@ then
 	export BRIGHTNESS=1
 fi
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH":/home/venkata/plumed2.6/lib"
-PATH="/home/venkata/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/venkata/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/venkata/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/venkata/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/venkata/perl5"; export PERL_MM_OPT;
-path.add /home/venkata/dnv/bin
-export DNV_ROOT='/home/venkata/dnv'
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH":$HOME/plumed2.6/lib"
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+path.add $HOME/dnv/bin
+export DNV_ROOT=$HOME'/dnv'
 export LIBRARY_PATH=$LIBRARY_PATH:"$HOME/lib/tensorflow/lib"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$HOME/lib/tensorflow/lib"
 
@@ -311,3 +309,6 @@ unset __conda_setup
 
 eval `ssh-agent -s`
 ssh-add ~/.ssh/key_ssh
+
+alias mv='mv -i'
+alias cp='cp -i'
